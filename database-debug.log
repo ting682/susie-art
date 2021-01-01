@@ -1,0 +1,7 @@
+07:34:13.940 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+07:34:14.155 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+07:46:37.862 [Thread-1] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+07:46:37.973 [NamespaceSystem-akka.actor.default-dispatcher-7] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: susie-wang-art
+07:46:38.006 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for susie-wang-art
+07:46:38.011 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for susie-wang-art
+07:46:38.029 [Thread-1] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
