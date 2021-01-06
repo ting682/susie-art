@@ -37,3 +37,10 @@ code {
   top: 25%;
   position: relative;
 }
+
+.about {
+  background-image: url('images/about.png');
+  background-size: cover;
+  height: 40vh;
+  width: 100%;
+}
