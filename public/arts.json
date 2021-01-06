@@ -6,7 +6,7 @@
             "price": "From $100",
             "images": [
                 {
-                    "url": "http://localhost:3002/images/fairytale.jpg",
+                    "url": "images/fairytale.jpg",
                     "alt": "fairytale"
                 }
             ]
