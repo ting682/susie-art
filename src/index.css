@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.introimage {
+  background-image: url('images/susie_art_home_intro.png');
+  background-size: cover;
+  height: 40vh;
+  width: 100%;
+}
+
+.introtext {
+  height: 30vh;
+  top: 25%;
+  position: relative;
+}

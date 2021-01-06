@@ -1,0 +1,98 @@
+{
+    "arts": [
+        {
+            "title": "FAIRYTALE",
+            "description": "Acrylic On Canvas, Hand Painted; 20”x20”",
+            "price": "From $100",
+            "images": [
+                {
+                    "url": "http://localhost:3002/images/fairytale.jpg",
+                    "alt": "fairytale"
+                }
+            ]
+
+        },
+        {
+            "title": "Love",
+            "description": "Acrylic On Canvas, Hand Painted; 16”x20”",
+            "price": "From $120",
+            "images": [
+                {
+                    "url": "images/love_1.png",
+                    "alt": "love"
+                }
+            ]
+        },
+        
+        {
+            "title": "ROSE",
+            "description": "Acrylic On Canvas, Hand Painted. Pallet knife painting",
+            "price": "From $100",
+            "images": [
+                {
+                    "url": "images/rose.png",
+                    "alt": "Rose"
+                }
+            ]
+        },
+        {
+            "title": "HEAVEN PEACE",
+            "description": "Acrylic On Canvas, Hand Painted. All pallet knife",
+            "price": "From $160",
+            "images": [
+                {
+                    "url": "images/heaven_peace.jpg",
+                    "alt": "Heaven peace"
+                }
+            ]
+        },
+        {
+            "title": "MISTY GARDEN",
+            "description": "Acrylic On Canvas, Hand Painted. All palette knife ",
+            "price": "From $135",
+            "images": [
+                {
+                    "url": "images/misty_garden.png",
+                    "alt": "Misty Garden"
+                }
+            ]
+        },
+        {
+            "title": "PASSION",
+            "description": "canvas, Acrylic Paint. All palette knife painting. Delivery usually takes about 4 business days The painting could be delivered as rolled in a tube ( Unstretched),Stretched ( ready to hang) or Stretched with wooden floating frame. We offer frames for extra cost, if you choose stretched option only.",
+            "price": "From $100",
+            "images": [
+                {
+                    "url": "images/passion.png",
+                    "alt": "Passion"
+                }
+            ]
+        },
+        {
+            "title": "PEACE",
+            "description": "Acrylic painting on canvas. 100% hand made with pallet knife. Delivery usually takes about 4 business days. The painting could be delivered as rolled in a tube ( Unstretched), Stretched ( ready to hang) or Stretched with wooden floating frame.           We offer frames for extra cost, if you choose stretched option only.",
+            "price": "From $100",
+            "images": [
+                {
+                    "url": "images/peace.png",
+                    "alt": "Peace"
+                }
+            ]
+        },
+        {
+            "title": "ELEGANT",
+            "description": "Acrylic on Canvas.",
+            "price": "From $80",
+            "images": [
+                {
+                    "url": "images/elegance_1.jpg",
+                    "alt": "Elegance 1"
+                },
+                {
+                    "url": "images/elegance_2.jpg",
+                    "alt": "Elegance 2"
+                }
+            ]
+        }
+    ]
+}
