@@ -1,6 +1,7 @@
 import React from 'react'
-import { ArtsContainer } from '../artsContainer'
 import { Intro } from '../intro'
+import Contact from '../pages/contact'
+import { ProductsIntro } from '../productsIntro'
 
 export const Home = (props) => {
     return (
@@ -9,7 +10,8 @@ export const Home = (props) => {
 
             <h3 style={{padding: "20% 0%"}}>Our Extensive Collection</h3>
 
-            <ArtsContainer />
+            <ProductsIntro />
+            <Contact />
         </React.Fragment>
     )
 }

@@ -3,10 +3,10 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 // import PaypalButton from './paypal/paypalButton'
 // import { Button } from 'react-bootstrap'
-// import { Link } from 'react-router-dom'
-import { Breadcrumb } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-export const Art = (props) => {
+
+export const ArtProduct = (props) => {
 
     const loaded = useSelector(state => state.arts.loaded)
 
@@ -49,21 +49,18 @@ export const Art = (props) => {
        // debugger
         return (
             <React.Fragment>
+                
                 {/* <Carousel> */}
             
                     
                 {/* </Carousel> */}
-                <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/products">
-                        Products
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item active>{props.title}</Breadcrumb.Item>
-                </Breadcrumb>
+                <Link to={{
+                    pathname: `/products/${props.title}`
+                }} >
                 {mapImages()}
                 
-                <h2>{props.title}</h2>
-                
+                    <h2>{props.title}</h2>
+                </Link>
                 <p>{props.description}</p>
                 <p>{props.price}</p>
 

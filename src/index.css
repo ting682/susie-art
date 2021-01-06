@@ -24,3 +24,16 @@ code {
   top: 25%;
   position: relative;
 }
+
+.introproducts {
+  background-image: url('images/products_intro.png');
+  background-size: cover;
+  height: 40vh;
+  width: 100%;
+}
+
+.introproductstext {
+  height: 30vh;
+  top: 25%;
+  position: relative;
+}

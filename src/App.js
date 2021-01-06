@@ -18,20 +18,25 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Home } from './components/pages/home'
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import { About } from './components/pages/about'
+import { ArtsContainer } from './components/artsContainer';
+import { ArtShow } from './components/artShow';
 
 function App() {
+
+
+
   return (
     <div className="App">
       <Router>
         <AuthProvider>
             <Navbar bg="light" expand="lg">
-              <Navbar.Brand href="#home">Susie Wang Art</Navbar.Brand>
+              <Navbar.Brand href="/">Susie Wang Art</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                  <Nav.Link href="#home">Home</Nav.Link>
+                  <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/about">About</Nav.Link>
-                  
+                  <Nav.Link href="/products">Products</Nav.Link>
                 </Nav>
                 <Form inline>
                   <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -42,6 +47,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
+            <Route exact path='/products' component={ArtsContainer} />
+            <Route path='/products/:artTitle' component={ArtShow} />
             {/* <PrivateRoute exact path="/" component={Dashboard}/>
             <PrivateRoute path='/update-profile' component={UpdateProfile} />
             <Route path="/signup" component={Signup} />

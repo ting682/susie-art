@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchArts } from '../actions/fetchArts'
 import React from 'react'
-import { Art } from './art'
+import { ArtProduct } from './artProduct'
+import { Breadcrumb } from 'react-bootstrap'
 
 export const ArtsContainer = (props) => {
 
@@ -31,9 +32,14 @@ export const ArtsContainer = (props) => {
 
     return (
         <React.Fragment>
+            <Breadcrumb>
+                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                    
+                    <Breadcrumb.Item active>Products</Breadcrumb.Item>
+                </Breadcrumb>
             {arts.map(function (art, index) {
             
-            return <Art key={index} title={art.title} description={art.description} price={art.price} images={art.images} />
+            return <ArtProduct key={index} title={art.title} description={art.description} price={art.price} images={art.images} paypalPrice={art.paypalPrice}/>
         })}
         </React.Fragment>
     )
