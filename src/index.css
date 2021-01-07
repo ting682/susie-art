@@ -44,3 +44,10 @@ code {
   height: 40vh;
   width: 100%;
 }
+
+.susielogo {
+  background-image: url('images/susie_wang_art_logo.png');
+  background-size: cover;
+  height: 55vh;
+  width: 100%;
+}

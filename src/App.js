@@ -20,6 +20,9 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import { About } from './components/pages/about'
 import { ArtsContainer } from './components/artsContainer';
 import { ArtShow } from './components/artShow';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 
@@ -30,8 +33,14 @@ function App() {
       <Router>
         <AuthProvider>
             <Navbar bg="light" expand="lg">
-              <Navbar.Brand href="/">Susie Wang Art</Navbar.Brand>
+              <Navbar.Brand>
+                <a href="https://www.facebook.com/Susie.Ketty.Riley"><FontAwesomeIcon icon={faFacebook} /> </a>
+                <a href="https://twitter.com/SusieWangCFA"><FontAwesomeIcon icon={faTwitter} /> </a>
+                <a href="https://www.linkedin.com/in/susiewangcfa/"><FontAwesomeIcon icon={faLinkedin} /> </a>
+              </Navbar.Brand>
+              <FontAwesomeIcon icon={faShoppingCart} />
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                   <Nav.Link href="/">Home</Nav.Link>
