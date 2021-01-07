@@ -1,26 +1,38 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchArts } from '../actions/fetchArts'
+// import { fetchArts } from '../actions/fetchArts'
 import React from 'react'
 import { ArtProduct } from './artProduct'
 import { Breadcrumb } from 'react-bootstrap'
+import firebase from "firebase/app";
+
+let artsRef = firebase.database().ref('arts/')
 
 export const ArtsContainer = (props) => {
+
+    // const [artsData, setArtsData] = useState([])
+    // const [fetched, setFetched] = useState(false)
 
     const dispatch = useDispatch()
     const arts = useSelector(state => state.arts.arts)
     // const requesting = useSelector(state => state.arts.requesting)
-    const [fetched, setFetched] = useState(false)
+    // debugger
+    // const [limit, setLimit] = useState(2)
+
+    const getData = () => {
+        
+        artsRef.on('value', (snapshot) => {
+        
+            const data = snapshot.val()
+            dispatch({type: 'GET_ARTS', payload: data})
+        })
+    }
 
     useEffect(() => {
-        if (!fetched) {
-            //debugger
-            dispatch(fetchArts())
-            setFetched(true)
-        }
         
+        getData()
         
-    },[fetched, dispatch])
+    },[])
 
     // const mapArts = () => {
     //     debugger
@@ -29,18 +41,27 @@ export const ArtsContainer = (props) => {
     //         return <Art key={index} title={art.title} description={art.description} price={art.price} images={art.images} />
     //     })
     // }
-
-    return (
-        <React.Fragment>
-            <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    
-                    <Breadcrumb.Item active>Products</Breadcrumb.Item>
+    
+        return (
+            <React.Fragment>
+                <Breadcrumb>
+                        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                        
+                        <Breadcrumb.Item active>Products</Breadcrumb.Item>
                 </Breadcrumb>
-            {arts.map(function (art, index) {
+                {Object.entries(arts).sort((a, b) => {
+                    //debugger
+                    return a[1].id - b[1].id
+                }).map((art) => {
+                    
+                    //debugger
+                
+                return <ArtProduct key={art[1].id} record={art[1].id} title={art[1].title} description={art[1].description} price={art[1].price} images={art[1].images} paypalPrice={art[1].paypalPrice} slug={art[1].slug} />
+            })}
             
-            return <ArtProduct key={index} title={art.title} description={art.description} price={art.price} images={art.images} paypalPrice={art.paypalPrice}/>
-        })}
-        </React.Fragment>
-    )
+    
+            </React.Fragment>
+        )
+    
+    
 }

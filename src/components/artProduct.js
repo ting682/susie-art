@@ -55,7 +55,7 @@ export const ArtProduct = (props) => {
                     
                 {/* </Carousel> */}
                 <Link to={{
-                    pathname: `/products/${props.title}`
+                    pathname: `/products/${props.slug}`
                 }} >
                 {mapImages()}
                 

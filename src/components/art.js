@@ -6,9 +6,11 @@ import { useSelector } from 'react-redux'
 // import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'react-bootstrap'
 
+
 export const Art = (props) => {
 
-    const loaded = useSelector(state => state.arts.loaded)
+    //debugger
+    const loaded = useSelector(state => state.art.loaded)
 
     // const [showPaypal, setShowPaypal] = useState(false)
 

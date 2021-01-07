@@ -9,7 +9,7 @@ export const IntroHeader = (props) => {
 
                 </div>
                 <h4>Enjoy the art journey!</h4>
-                <a href="#" >info@susiewangart.com</a>
+                <a href="mailto:info@susiewangart.com" >info@susiewangart.com</a>
                 
             </div>
         </React.Fragment>
