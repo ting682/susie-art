@@ -38,8 +38,15 @@ code {
   position: relative;
 }
 
-.about {
-  background-image: url('images/about.png');
+.about1 {
+  background-image: url('images/about_1.jpg');
+  background-size: cover;
+  height: 40vh;
+  width: 100%;
+}
+
+.about2 {
+  background-image: url('images/about_2.jpg');
   background-size: cover;
   height: 40vh;
   width: 100%;

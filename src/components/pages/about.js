@@ -6,9 +6,10 @@ export const About = (props) => {
 
     return (
         <React.Fragment>
-            <div className="about">
-
-            </div>
+            <img src="images/about_1.jpg" style={{width: "100%", maxWidth: "600px", paddingBottom: "30px"}}>
+                
+            </img>
+           
             <p>About Susie Wang:</p>
         </React.Fragment>
     )
