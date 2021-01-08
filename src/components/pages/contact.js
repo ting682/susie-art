@@ -52,19 +52,19 @@ class Contact extends Component {
             <Form onSubmit={this.sendEmail}>
                 <Form.Group controlId="formGroupName">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control name="contactName" type="text" placeholder="Enter your name" value={this.state.contactName}/>
+                    <Form.Control name="contactName" type="text" onChange={this.handleChange} placeholder="Enter your name" value={this.state.contactName}/>
                 </Form.Group>
                 <Form.Group controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control name="contactEmail" type="email" placeholder="Enter email" value={this.state.contactEmail}/>
+                    <Form.Control name="contactEmail" type="email" onChange={this.handleChange} placeholder="Enter email" value={this.state.contactEmail}/>
                 </Form.Group>
                 <Form.Group controlId="formGroupSubject">
                     <Form.Label>Subject</Form.Label>
-                    <Form.Control name="contactSubject" type="text" placeholder="Subject" value={this.state.contactSubject}/>
+                    <Form.Control name="contactSubject" type="text" onChange={this.handleChange} placeholder="Subject" value={this.state.contactSubject}/>
                 </Form.Group>
                 <Form.Group controlId="formGroupMessage">
                     <Form.Label>Message</Form.Label>
-                    <Form.Control name="contactMessage" type="text" placeholder="Message" value={this.state.contactMessage}/>
+                    <Form.Control name="contactMessage" type="text" onChange={this.handleChange} placeholder="Message" value={this.state.contactMessage}/>
                 </Form.Group>
                 <Button type="submit">Submit</Button>
             </Form>
