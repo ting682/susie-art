@@ -22,7 +22,7 @@ import { About } from './components/pages/about'
 import { ArtsContainer } from './components/artsContainer';
 import { ArtShow } from './components/artShow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -42,7 +42,7 @@ function App() {
                 <Navbar.Brand>
                   <a href="https://www.facebook.com/Susie.Ketty.Riley"><FontAwesomeIcon icon={faFacebook} /> </a>
                   <a href="https://twitter.com/SusieWangCFA"><FontAwesomeIcon icon={faTwitter} /> </a>
-                  <a href="https://www.linkedin.com/in/susiewangcfa/"><FontAwesomeIcon icon={faLinkedin} /> </a>
+                  <a href="https://www.instagram.com/susie_wang26/"><FontAwesomeIcon icon={faInstagram} /> </a>
                 </Navbar.Brand>
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
