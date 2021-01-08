@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 // import PaypalButton from './paypal/paypalButton'
 // import { Button } from 'react-bootstrap'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'react-bootstrap'
 
 
@@ -56,9 +56,9 @@ export const Art = (props) => {
                     
                 {/* </Carousel> */}
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/products">
-                        Products
+                    <Breadcrumb.Item ><Link to="/">Home</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                        <Link to="/products">Products</Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>{props.title}</Breadcrumb.Item>
                 </Breadcrumb>

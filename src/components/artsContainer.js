@@ -5,8 +5,8 @@ import React from 'react'
 import { ArtProduct } from './artProduct'
 import { Breadcrumb } from 'react-bootstrap'
 import firebase from "firebase/app";
+import { Link } from 'react-router-dom'
 
-let artsRef = firebase.database().ref('arts/')
 
 export const ArtsContainer = (props) => {
 
@@ -18,21 +18,21 @@ export const ArtsContainer = (props) => {
     // const requesting = useSelector(state => state.arts.requesting)
     // debugger
     // const [limit, setLimit] = useState(2)
+    
 
     const getData = () => {
         
-        artsRef.on('value', (snapshot) => {
-        
+        let artsRef = firebase.database().ref('arts/')
+        // debugger
+        return artsRef.once('value', (snapshot) => {
+            // debugger
             const data = snapshot.val()
+            // console.log(data)
             dispatch({type: 'GET_ARTS', payload: data})
         })
     }
 
-    useEffect(() => {
-        
-        getData()
-        
-    },[])
+    useEffect(() => getData(),[])
 
     // const mapArts = () => {
     //     debugger
@@ -45,7 +45,7 @@ export const ArtsContainer = (props) => {
         return (
             <React.Fragment>
                 <Breadcrumb>
-                        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                        <Breadcrumb.Item ><Link to="/">Home</Link></Breadcrumb.Item>
                         
                         <Breadcrumb.Item active>Products</Breadcrumb.Item>
                 </Breadcrumb>
@@ -54,7 +54,7 @@ export const ArtsContainer = (props) => {
                     return a[1].id - b[1].id
                 }).map((art) => {
                     
-                    //debugger
+                    // debugger
                 
                 return <ArtProduct key={art[1].id} record={art[1].id} title={art[1].title} description={art[1].description} price={art[1].price} images={art[1].images} paypalPrice={art[1].paypalPrice} slug={art[1].slug} />
             })}

@@ -16,15 +16,21 @@ export const ArtShow = (props) => {
     const [fetched, setFetched] = useState(false)
 
     const artRoute = props.match.params.artTitle
-
+    // debugger
     // const arts = useSelector(state => state.arts)
     // debugger
     const art = useSelector(state => state.art)
     
+    
+    // debugger
     const getData = () => {
-        let artRef = firebase.database().ref('arts/').orderByChild('slug').equalTo(artRoute)
+
+        
         // debugger
+        let artRef = firebase.database().ref('arts/').orderByChild('slug').equalTo(artRoute.toLowerCase())
+
         artRef.on('value', snap => {
+            //debugger
             const dataOne = Object.values(snap.val())[0]
             // debugger
             dispatch({type: 'GET_ART', payload: dataOne})
