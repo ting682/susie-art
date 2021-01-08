@@ -15,7 +15,7 @@ export const ArtShow = (props) => {
 
     // const [fetched, setFetched] = useState(false)
 
-    const artRoute = props.match.params.artTitle
+    const artRoute = props.match.params.artTitle.toLowerCase()
     // debugger
     // const arts = useSelector(state => state.arts)
     // debugger
@@ -27,23 +27,16 @@ export const ArtShow = (props) => {
 
         
         // debugger
-        let artRef = firebase.database().ref('arts/').orderByChild('slug').equalTo(artRoute.toLowerCase())
-
+        // let artRef = firebase.database().ref('arts/').orderByChild('paypalPrice').equalTo('100').limitToFirst(3)
+        let artRef = firebase.database().ref('arts/' + artRoute)
         artRef.once('value', snap => {
             //debugger
-            const dataOne = Object.values(snap.val())[0]
+            const dataOne = snap.val()
             // debugger
             dispatch({type: 'GET_ART', payload: dataOne})
             // setFetched(true)
         })
 
-        // artRef.on('value', (snapshot) => {
-        
-        //     const data = snapshot.val()
-        //     // debugger
-        //     dispatch({type: 'GET_ARTS', payload: data})
-        // })
-        //debugger
     }
 
     useEffect(getData, [])
