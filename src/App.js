@@ -7,7 +7,7 @@ import 'firebase/database';
 import React from 'react'
 // import fire from './firebaseConfig'
 // import Messages from './components/messages'
-import 'bootstrap/dist/css/bootstrap.css'
+
 // import Signup from './components/signup'
 import { AuthProvider } from './contexts/authContext';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"

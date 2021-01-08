@@ -48,25 +48,25 @@ class Contact extends Component {
 
     return (
         <React.Fragment>
-            <h1>Get in touch.</h1>
+            <h3 style={{paddingTop: "30px"}}>Get in touch.</h3>
             <Form onSubmit={this.sendEmail}>
                 <Form.Group controlId="formGroupName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control name="contactName" type="text" onChange={this.handleChange} placeholder="Enter your name" value={this.state.contactName}/>
+                    
+                    <input className="nooutline" name="contactName" type="text" onChange={this.handleChange} placeholder="Name" value={this.state.contactName}/>
                 </Form.Group>
                 <Form.Group controlId="formGroupEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control name="contactEmail" type="email" onChange={this.handleChange} placeholder="Enter email" value={this.state.contactEmail}/>
+                    
+                    <input className="nooutline" name="contactEmail" type="email" onChange={this.handleChange} placeholder="Email address" value={this.state.contactEmail}/>
                 </Form.Group>
                 <Form.Group controlId="formGroupSubject">
-                    <Form.Label>Subject</Form.Label>
-                    <Form.Control name="contactSubject" type="text" onChange={this.handleChange} placeholder="Subject" value={this.state.contactSubject}/>
+                    
+                    <input className="nooutline" name="contactSubject" type="text" onChange={this.handleChange} placeholder="Subject" value={this.state.contactSubject}/>
                 </Form.Group>
                 <Form.Group controlId="formGroupMessage">
-                    <Form.Label>Message</Form.Label>
-                    <Form.Control name="contactMessage" type="text" onChange={this.handleChange} placeholder="Message" value={this.state.contactMessage}/>
+                    
+                    <textarea className="nooutline" name="contactMessage" type="textarea" rows="4" onChange={this.handleChange} placeholder="Type your message here..." value={this.state.contactMessage}/>
                 </Form.Group>
-                <Button type="submit">Submit</Button>
+                <Button variant="outline-dark" type="submit">Submit</Button>
             </Form>
         </React.Fragment>
       

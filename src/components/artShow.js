@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { fetchArt } from '../actions/fetchArt'
 // import { fetchArts } from '../actions/fetchArts'
@@ -13,7 +13,7 @@ export const ArtShow = (props) => {
     //    props.match.params.artTitle
     const dispatch = useDispatch()
 
-    const [fetched, setFetched] = useState(false)
+    // const [fetched, setFetched] = useState(false)
 
     const artRoute = props.match.params.artTitle
     // debugger
@@ -29,12 +29,12 @@ export const ArtShow = (props) => {
         // debugger
         let artRef = firebase.database().ref('arts/').orderByChild('slug').equalTo(artRoute.toLowerCase())
 
-        artRef.on('value', snap => {
+        artRef.once('value', snap => {
             //debugger
             const dataOne = Object.values(snap.val())[0]
             // debugger
             dispatch({type: 'GET_ART', payload: dataOne})
-            setFetched(true)
+            // setFetched(true)
         })
 
         // artRef.on('value', (snapshot) => {

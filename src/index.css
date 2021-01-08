@@ -58,3 +58,37 @@ code {
   height: 55vh;
   width: 100%;
 }
+
+.nooutline {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+  padding: 3px 3px 3px 12px;
+  border-radius: 0px;
+}
+
+.nooutline:focus {
+  border-radius: 0px;
+  outline: none;
+}
+
+.nooutline:active {
+  border-radius: 0px;
+}
+
+.nooutline:hover {
+  border: 1px solid black;
+}
+
+.nooutline::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+.nooutline:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+.nooutline::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+}

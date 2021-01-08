@@ -20,7 +20,7 @@ export const Art = (props) => {
             //debugger
 
             return <img key={index}
-                        className="d-blog w-100"
+                        className="w-100" style={{maxWidth: "600px"}}
                         // src={"http://localhost:3002/" + image.url}
                         src={"https://susie-wang-art.web.app/" + image.url}
                         alt={image.alt}
