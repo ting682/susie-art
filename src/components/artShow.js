@@ -23,7 +23,7 @@ export const ArtShow = (props) => {
     
     
     // debugger
-    const getData = () => {
+    const getData = async () => {
 
         
         // debugger
@@ -36,16 +36,35 @@ export const ArtShow = (props) => {
             dispatch({type: 'GET_ART', payload: dataOne})
             // setFetched(true)
         })
+        let artImagesRef = firebase.storage().ref('images/' + artRoute)
+
+        dispatch({type: "START_REQUESTING_IMAGES"})
+        const list = await artImagesRef.listAll()
+        //  debugger
+            Promise.all(
+                
+                list.items.map(async function(itemRef, idx, array) {
+                    // artImagesRef.getDownloadURL()
+                    
+                    const url = await artImagesRef.child(itemRef.name).getDownloadURL()
+                    dispatch({type: "GET_IMAGE", payload: {url: url, alt: itemRef.name.split('.')[0]}})
+                    
+                    
+                })
+            ).then(resp => {
+                dispatch({type: "FINISHED_LOADING_IMAGES"})
+                
+            })
 
     }
 
-    useEffect(getData, [])
+    useEffect(getData, [artRoute, dispatch])
 
-    if (art.loaded) {
+    if (art.artLoaded) {
         // debugger
         return (
             <React.Fragment>
-                <Art title={art.art.title} description={art.art.description} price={art.art.price} images={art.art.images} paypalPrice={art.art.paypalPrice}/>
+                <Art title={art.art.title} description={art.art.description} price={art.art.price} images={art.art.images} paypalPrice={art.art.paypalPrice} artRoute={artRoute}/>
             </React.Fragment>
         )
     } else {

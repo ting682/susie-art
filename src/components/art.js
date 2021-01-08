@@ -1,30 +1,47 @@
 // import { Carousel, CarouselItem } from 'bootstrap'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 // import PaypalButton from './paypal/paypalButton'
 // import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'react-bootstrap'
+// import firebase from "firebase/app";
 
 
 export const Art = (props) => {
 
     //debugger
-    const loaded = useSelector(state => state.art.loaded)
-
+    // const loaded = useSelector(state => state.art.imagesLoaded)
+    const artImages = useSelector(state => state.art.images)
+    // const [load, setLoad] = useState(true)
     // const [showPaypal, setShowPaypal] = useState(false)
+    // const dispatch = useDispatch()
 
     const mapImages = () => {
         // debugger
-        return props.images.map(function(image, index) {
-            //debugger
+        
+            return artImages.map(function(image, index) {
+                //debugger
+                
+                return <img key={index}
+                            className="w-100" style={{maxWidth: "600px"}}
+                            // src={"http://localhost:3002/" + image.url}
+                            src={image.url}
+                            alt={image.alt}
+                        />
+            })
+        
+            
+        
+        // return props.images.map(function(image, index) {
+        //     //debugger
 
-            return <img key={index}
-                        className="w-100" style={{maxWidth: "600px"}}
-                        // src={"http://localhost:3002/" + image.url}
-                        src={"https://susie-wang-art.web.app/" + image.url}
-                        alt={image.alt}
-                    />
+        //     return <img key={index}
+        //                 className="w-100" style={{maxWidth: "600px"}}
+        //                 // src={"http://localhost:3002/" + image.url}
+        //                 src={"https://susie-wang-art.web.app/" + image.url}
+        //                 alt={image.alt}
+        //             />
 
             // return <CarouselItem key={index}>
             //         <img key={index}
@@ -35,7 +52,7 @@ export const Art = (props) => {
 
             //     </CarouselItem>
             
-        })
+        
     }
 
     // const handlePay = () => {
@@ -46,9 +63,53 @@ export const Art = (props) => {
     //     //debugger
     //     return <PaypalButton image={props.images[0].url} imageAlt={props.images[0].alt} product={props.title} paypalPrice={props.paypalPrice}/>
     // }
+    // debugger
+    
+    
+    // let artDatabaseRef = firebase.database().ref('arts/' + props.artRoute)
 
-    if (loaded) {
-       // debugger
+    // artImagesRef.child('fairytale.jpg').getDownloadURL().then(url => {
+    //     console.log(url)
+    // })
+    
+    // let allPromises = []
+
+
+
+    useEffect(() => {
+        // debugger
+        
+        
+        
+            
+            
+  
+            
+            // const list = await artImagesRef.listAll().then(res => {
+            //     res.items.forEach(function(itemRef, idx, array) {
+            //         // artImagesRef.getDownloadURL()
+                    
+            //         artImagesRef.child(itemRef.name).getDownloadURL().then(url => {
+            //             // console.log(url)
+    
+            //             dispatch({type: "GET_IMAGE", payload: {url: url, alt: itemRef.name.split('.')[0]}})
+                        
+            //         })
+            //     })
+                
+            //     //debugger
+                
+                  
+            // })
+        
+        
+        
+    },[])
+    
+
+    // debugger
+    
+       
         return (
             <React.Fragment>
                 {/* <Carousel> */}
@@ -72,12 +133,6 @@ export const Art = (props) => {
                 {/* <Button onClick={handlePay}>Pay via Paypal</Button> */}
             </React.Fragment>
         )
-    } else {
-        return (
-            <React.Fragment>
-
-            </React.Fragment>
-        )
-    }
+    
     
 }

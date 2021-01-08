@@ -1,6 +1,9 @@
-export function artReducer(state = { art: [], requesting: false, loaded: false}, action) {
+export function artReducer(state = { art: [], images: [], requesting: false, requestingImages: false, artLoaded: false, imagesLoaded: false}, action) {
+
 
     switch(action.type) {
+
+        
 
         case 'START_REQUESTING_ART':
 
@@ -8,7 +11,7 @@ export function artReducer(state = { art: [], requesting: false, loaded: false},
                 ...state,
                 art: [],
                 requesting: true,
-                loaded: false
+                artLoaded: false
             }
 
         case 'GET_ART':
@@ -16,8 +19,35 @@ export function artReducer(state = { art: [], requesting: false, loaded: false},
             return {
                 ...state,
                 art: action.payload,
+
                 requesting: false,
-                loaded: true
+                artLoaded: true
+            }
+        
+        case 'START_REQUESTING_IMAGES':
+
+            return {
+                ...state,
+                images: [],
+                requestingImages: true,
+                imagesLoaded: false
+            }
+
+        case 'GET_IMAGE':
+
+            return {
+                ...state,
+                images: [...state.images, action.payload],
+                requesting: false,
+                imagesLoaded: false
+            }
+        
+        case 'FINISHED_LOADING_IMAGES':
+
+            return {
+                ...state,
+                imagesLoaded: true,
+                requestingImages: false
             }
 
         default:
