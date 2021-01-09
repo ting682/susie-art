@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'react-bootstrap'
 // import firebase from "firebase/app";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import { Carousel } from 'react-responsive-carousel'
 
 export const Art = (props) => {

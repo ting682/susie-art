@@ -24,7 +24,7 @@ import { ArtShow } from './components/artShow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 
