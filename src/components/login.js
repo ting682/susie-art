@@ -81,7 +81,7 @@ export default function Login () {
                     <Form.Control type="password" name="password" onChange={handlePasswordChange} value={password}></Form.Control>
                 </Form.Group>
                 
-                <Button type="submit">Login</Button>
+                <Button variant="outline-dark" type="submit">Login</Button>
                 <div className="w-100 text-center mt-3">
                     <Link to="/forgot-password">Forgot password?</Link>
                 </div>

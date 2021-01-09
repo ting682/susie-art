@@ -8,7 +8,7 @@ import React from 'react'
 // import fire from './firebaseConfig'
 // import Messages from './components/messages'
 
-import Signup from './components/signup'
+// import Signup from './components/signup'
 import { AuthProvider } from './contexts/authContext';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 // import Dashboard from './components/dashboard'
@@ -26,11 +26,9 @@ import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { EditArtsContainer } from './components/editArtsContainer'
+import { EditAbout } from './components/editAbout'
 
-
-function App() {
-
-  
+const App = () => {
 
   return (
     <div className="App" style={{fontFamily: "'Times New Roman', serif"}}>
@@ -52,6 +50,7 @@ function App() {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
                     <Nav.Link href="/products">Products</Nav.Link>
+                    {/* {!! currentUser && <Nav.Link href="/editproducts">Edit art</Nav.Link>} */}
                   </Nav>
                   <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -65,8 +64,9 @@ function App() {
               <Route exact path='/products' component={ArtsContainer} />
               <Route path='/products/:artTitle' component={ArtShow} />
               <PrivateRoute exact path="/editproducts" component={EditArtsContainer}/>
+              <PrivateRoute exact path="/editabout" component={EditAbout}/>
               <PrivateRoute path='/update-profile' component={UpdateProfile} />
-              <Route path="/signup" component={Signup} />
+              {/* <Route path="/signup" component={Signup} /> */}
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword}></Route>
             </Switch>

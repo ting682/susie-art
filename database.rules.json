@@ -4,6 +4,10 @@
     "arts": {
       ".read": true,
       ".write": "auth.uid != null"
+    },
+    "about": {
+      ".read": true,
+        ".write": "auth.uid != null"
     }
     
   }

@@ -8,7 +8,7 @@ function Signup()  {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const { signup, currentUser } = useAuth()
+    const { signup } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -47,9 +47,9 @@ function Signup()  {
 
     return (
         <React.Fragment>
-            <Alert variant="danger">{error}</Alert>
+            {!!error && <Alert variant="danger">{error}</Alert>}
             <h1>{loading}</h1>
-            <h1>{currentUser && currentUser.email}</h1>
+            {/* <h1>{currentUser && currentUser.email}</h1> */}
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Email</Form.Label>
@@ -63,7 +63,7 @@ function Signup()  {
                     <Form.Label>Password Confirmation</Form.Label>
                     <Form.Control type="password" name="passwordConfirmation" onChange={handlePasswordConfirmation} value={passwordConfirmation}></Form.Control>
                 </Form.Group>
-                <Button type="submit">Signup</Button>
+                <Button variant="outline-dark" type="submit">Signup</Button>
             </Form>
         </React.Fragment>
     )
