@@ -12,7 +12,7 @@ import { Carousel } from 'react-responsive-carousel'
 export const Art = (props) => {
 
     //debugger
-    // const loaded = useSelector(state => state.art.imagesLoaded)
+    const loaded = useSelector(state => state.art.imagesLoaded)
     const artImages = useSelector(state => state.art.images)
     // const [load, setLoad] = useState(true)
     // const [showPaypal, setShowPaypal] = useState(false)
@@ -116,8 +116,7 @@ export const Art = (props) => {
     
 
     // debugger
-    
-       
+    if(loaded) {
         return (
             <React.Fragment>
                 {/* <Carousel> */}
@@ -131,7 +130,7 @@ export const Art = (props) => {
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>{props.title}</Breadcrumb.Item>
                 </Breadcrumb>
-                <Carousel showThumbs={false}>
+                <Carousel>
                     {mapImages()}
                 </Carousel>
                 
@@ -144,6 +143,13 @@ export const Art = (props) => {
                 {/* <Button onClick={handlePay}>Pay via Paypal</Button> */}
             </React.Fragment>
         )
+    } else {
+        return (
+            <React.Fragment></React.Fragment>
+        )
+    }
+       
+        
     
     
 }
