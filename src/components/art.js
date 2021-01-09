@@ -24,12 +24,19 @@ export const Art = (props) => {
             return artImages.map(function(image, index) {
                 //debugger
                 
-                return <img key={index}
+                return (
+                    <div key={index} style={{position: "relative"}}>
+                        <img key={index}
                             className="w-100" style={{maxWidth: "600px"}}
                             // src={"http://localhost:3002/" + image.url}
                             src={image.url}
                             alt={image.alt}
+
                         />
+                        
+                    </div>
+                
+                )
             })
         
             
