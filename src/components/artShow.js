@@ -23,42 +23,45 @@ export const ArtShow = (props) => {
     
     
     // debugger
-    const getData = async () => {
+    
+
+    useEffect(() => {
+        async function getData() {
 
         
-        // debugger
-        // let artRef = firebase.database().ref('arts/').orderByChild('paypalPrice').equalTo('100').limitToFirst(3)
-        let artRef = firebase.database().ref('arts/' + artRoute)
-        artRef.once('value', snap => {
-            //debugger
-            const dataOne = snap.val()
             // debugger
-            dispatch({type: 'GET_ART', payload: dataOne})
-            // setFetched(true)
-        })
-        let artImagesRef = firebase.storage().ref('images/' + artRoute)
-
-        dispatch({type: "START_REQUESTING_IMAGES"})
-        const list = await artImagesRef.listAll()
-        //  debugger
-            Promise.all(
-                
-                list.items.map(async function(itemRef, idx, array) {
-                    // artImagesRef.getDownloadURL()
+            // let artRef = firebase.database().ref('arts/').orderByChild('paypalPrice').equalTo('100').limitToFirst(3)
+            let artRef = firebase.database().ref('arts/' + artRoute)
+            artRef.once('value', snap => {
+                //debugger
+                const dataOne = snap.val()
+                // debugger
+                dispatch({type: 'GET_ART', payload: dataOne})
+                // setFetched(true)
+            })
+            let artImagesRef = firebase.storage().ref('images/' + artRoute)
+    
+            dispatch({type: "START_REQUESTING_IMAGES"})
+            const list = await artImagesRef.listAll()
+            //  debugger
+                Promise.all(
                     
-                    const url = await artImagesRef.child(itemRef.name).getDownloadURL()
-                    dispatch({type: "GET_IMAGE", payload: {url: url, alt: itemRef.name.split('.')[0]}})
-                    
+                    list.items.map(async function(itemRef, idx, array) {
+                        // artImagesRef.getDownloadURL()
+                        
+                        const url = await artImagesRef.child(itemRef.name).getDownloadURL()
+                        dispatch({type: "GET_IMAGE", payload: {url: url, alt: itemRef.name.split('.')[0]}})
+                        
+                        
+                    })
+                ).then(resp => {
+                    dispatch({type: "FINISHED_LOADING_IMAGES"})
                     
                 })
-            ).then(resp => {
-                dispatch({type: "FINISHED_LOADING_IMAGES"})
-                
-            })
-
-    }
-
-    useEffect(getData, [artRoute, dispatch])
+    
+        }
+        getData()
+    }, [artRoute, dispatch])
 
     if (art.artLoaded) {
         // debugger

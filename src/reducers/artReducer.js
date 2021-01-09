@@ -24,6 +24,7 @@ export function artReducer(state = { art: [], images: [], requesting: false, req
                 artLoaded: true
             }
         
+
         case 'START_REQUESTING_IMAGES':
 
             return {

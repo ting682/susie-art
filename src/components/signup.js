@@ -36,7 +36,7 @@ function Signup()  {
             setError('')
             setLoading(true)
             await signup(email, password)
-            history.push("/")
+            history.push("/editproducts")
         } catch {
             setError('Failed to signup')
         }

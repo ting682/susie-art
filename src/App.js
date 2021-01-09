@@ -8,14 +8,14 @@ import React from 'react'
 // import fire from './firebaseConfig'
 // import Messages from './components/messages'
 
-// import Signup from './components/signup'
+import Signup from './components/signup'
 import { AuthProvider } from './contexts/authContext';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 // import Dashboard from './components/dashboard'
-// import Login from './components/login'
-// import PrivateRoute from './components/privateRoute'
-// import ForgotPassword from './components/forgotPassword'
-// import UpdateProfile from './components/updateProfile'
+import Login from './components/login'
+import PrivateRoute from './components/privateRoute'
+import ForgotPassword from './components/forgotPassword'
+import UpdateProfile from './components/updateProfile'
 import { Home } from './components/pages/home'
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import { About } from './components/pages/about'
@@ -25,7 +25,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-
+import { EditArtsContainer } from './components/editArtsContainer'
 
 
 function App() {
@@ -64,11 +64,11 @@ function App() {
               <Route path='/about' component={About} />
               <Route exact path='/products' component={ArtsContainer} />
               <Route path='/products/:artTitle' component={ArtShow} />
-              {/* <PrivateRoute exact path="/" component={Dashboard}/>
+              <PrivateRoute exact path="/editproducts" component={EditArtsContainer}/>
               <PrivateRoute path='/update-profile' component={UpdateProfile} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
-              <Route path="/forgot-password" component={ForgotPassword}></Route> */}
+              <Route path="/forgot-password" component={ForgotPassword}></Route>
             </Switch>
             
           </AuthProvider>

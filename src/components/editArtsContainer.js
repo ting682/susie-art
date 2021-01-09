@@ -6,12 +6,10 @@ import { ArtProduct } from './artProduct'
 import { Breadcrumb } from 'react-bootstrap'
 import firebase from "firebase/app";
 import { Link } from 'react-router-dom'
+import { EditArt } from './editArt'
+import { EditArtImages } from "./editArtImages"
 
-
-export const ArtsContainer = (props) => {
-
-    // const [artsData, setArtsData] = useState([])
-    // const [fetched, setFetched] = useState(false)
+export const EditArtsContainer = (props) => {
 
     const dispatch = useDispatch()
     const arts = useSelector(state => state.arts.arts)
@@ -61,12 +59,19 @@ export const ArtsContainer = (props) => {
                     
                     // debugger
                 
-                return <ArtProduct key={art[1].id} record={art[1].id} title={art[1].title} description={art[1].description} price={art[1].price} images={art[1].images} paypalPrice={art[1].paypalPrice} slug={art[1].slug} />
+                return (
+                    <React.Fragment>
+                        <ArtProduct key={art[1].id} record={art[1].id} title={art[1].title} description={art[1].description} price={art[1].price} images={art[1].images} paypalPrice={art[1].paypalPrice} slug={art[1].slug} />
+                        
+                        <EditArt  key={art[1].id * 10} record={art[1].id} title={art[1].title} description={art[1].description} price={art[1].price} images={art[1].images} paypalPrice={art[1].paypalPrice} slug={art[1].slug} />
+                        <EditArtImages key={art[1].id * 100} record={art[1].id} title={art[1].title} description={art[1].description} price={art[1].price} images={art[1].images} paypalPrice={art[1].paypalPrice} slug={art[1].slug} />
+                    </React.Fragment>
+                )
             })}
             
     
             </React.Fragment>
         )
-    
+
     
 }
