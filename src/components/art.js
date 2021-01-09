@@ -131,7 +131,7 @@ export const Art = (props) => {
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>{props.title}</Breadcrumb.Item>
                 </Breadcrumb>
-                <Carousel>
+                <Carousel showThumbs={false}>
                     {mapImages()}
                 </Carousel>
                 
