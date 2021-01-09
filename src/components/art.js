@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'react-bootstrap'
 // import firebase from "firebase/app";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel'
 
 export const Art = (props) => {
 
@@ -123,7 +124,10 @@ export const Art = (props) => {
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>{props.title}</Breadcrumb.Item>
                 </Breadcrumb>
-                {mapImages()}
+                <Carousel>
+                    {mapImages()}
+                </Carousel>
+                
                 
                 <h2>{props.title}</h2>
                 

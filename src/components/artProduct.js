@@ -14,7 +14,7 @@ export const ArtProduct = (props) => {
 
     const mapImages = () => {
         // debugger
-        return props.images.map(function(image, index) {
+        return [props.images[0]].map(function(image, index) {
             //debugger
 
             return <img key={index}
