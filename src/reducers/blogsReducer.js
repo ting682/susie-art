@@ -20,6 +20,17 @@ export function blogsReducer(state = { blogs: [], requesting: false, loaded: fal
                 loaded: true
             }
         
+        case 'NEW_BLOG':
+
+            blogs = {...state.blogs}
+
+            blogs[action.payload.blogId] = {content: action.payload.content, updatedAt: action.payload.updatedAt}
+
+            return {
+                ...state,
+                blogs: blogs
+            }
+
         case 'UPDATE_BLOG':
             blogs = {...state.blogs}
 

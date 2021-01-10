@@ -16,7 +16,7 @@ import PrivateRoute from './components/privateRoute'
 import ForgotPassword from './components/forgotPassword'
 import UpdateProfile from './components/updateProfile'
 import { Home } from './components/pages/home'
-import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 import { About } from './components/about'
 import { ArtsContainer } from './components/artsContainer';
 import { ArtShow } from './components/artShow';

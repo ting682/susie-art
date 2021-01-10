@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import firebase from "firebase/app";
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux'
 
 export const BlogInput = () => {
 
     const [blogContent, setBlogContent] = useState('')
+
+    const dispatch = useDispatch()
 
     const handleChange = (value) => {
         setBlogContent(value)
@@ -15,11 +18,13 @@ export const BlogInput = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         let newUuid = uuidv4()
+        let newUpdatedAt = (new Date()).toString()
         firebase.database().ref('blogs/' + newUuid).set({
             content: blogContent,
-            updatedAt: (new Date()).toString()
+            updatedAt: newUpdatedAt
         })
-        
+        dispatch({type: 'NEW_BLOG', payload: {content: blogContent, updatedAt: newUpdatedAt, blogId: newUuid}})
+        setBlogContent('')
     }
 
     return (
