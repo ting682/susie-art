@@ -5,7 +5,6 @@ import React from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'
-import Parser from 'html-react-parser'
 
 export const EditAbout = () => {
 
@@ -68,10 +67,7 @@ export const EditAbout = () => {
     if (loaded) {
         return (
             <React.Fragment>
-                <img src="images/about_3.jpg" alt="about Susie" style={{width: "100%", maxWidth: "600px", paddingBottom: "30px"}}>
-                    
-                </img>
-                {Parser(aboutText)}
+                
                 <Button variant="outline-info" onClick={handleClick} >Edit about</Button>
                 
                 <Modal show={show} onHide={handleClose}>

@@ -3,10 +3,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import React from 'react'
 import Parser from 'html-react-parser'
+import { EditAbout } from './editAbout'
+import { useAuth } from '../contexts/authContext'
 
 export const About = () => {
 
-    //debugger
+    const { currentUser } = useAuth()
+
     const dispatch = useDispatch()
 
     const aboutText = useSelector(state => state.about.about)
@@ -34,6 +37,7 @@ export const About = () => {
                     
                 </img>
                 {Parser(aboutText)}
+                {!!currentUser && <EditAbout />}
             </React.Fragment>
         )
     } else {

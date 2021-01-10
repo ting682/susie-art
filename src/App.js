@@ -17,7 +17,7 @@ import ForgotPassword from './components/forgotPassword'
 import UpdateProfile from './components/updateProfile'
 import { Home } from './components/pages/home'
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
-import { About } from './components/pages/about'
+import { About } from './components/about'
 import { ArtsContainer } from './components/artsContainer';
 import { ArtShow } from './components/artShow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -55,10 +55,10 @@ const App = () => {
                     <Nav.Link as={Link} to="/blog">Blog</Nav.Link>
                     {/* {!! currentUser && <Nav.Link href="/editproducts">Edit art</Nav.Link>} */}
                   </Nav>
-                  <Form inline>
+                  {/* <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-success">Search</Button>
-                  </Form>
+                  </Form> */}
                 </Navbar.Collapse>
             </Navbar>
             <Switch>
