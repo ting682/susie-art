@@ -8,6 +8,10 @@
     "about": {
       ".read": true,
         ".write": "auth.uid != null"
+    },
+    "blogs": {
+      ".read": true,
+        ".write": "auth.uid != null"
     }
     
   }

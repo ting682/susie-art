@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 export const Intro = (props) => {
 
@@ -18,7 +19,7 @@ export const Intro = (props) => {
             <div className="introtext" >
                 <h1 style={{color:"white"}} >Unleash Your Imagination</h1>
                 <p>Susie Wang Art for your art collection</p>
-                <Button variant="outline-dark" style={{backgroundColor}} onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}>Learn more</Button>
+                <Button as={Link} to="about/" variant="outline-dark" style={{backgroundColor}} onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}>Learn more</Button>
             </div>
         </div>
     )

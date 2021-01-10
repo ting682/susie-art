@@ -11,7 +11,6 @@ import React from 'react'
 // import Signup from './components/signup'
 import { AuthProvider } from './contexts/authContext';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-// import Dashboard from './components/dashboard'
 import Login from './components/login'
 import PrivateRoute from './components/privateRoute'
 import ForgotPassword from './components/forgotPassword'
@@ -27,6 +26,9 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { EditArtsContainer } from './components/editArtsContainer'
 import { EditAbout } from './components/editAbout'
+import { BlogsContainer } from './components/blogsContainer';
+import { Link } from 'react-router-dom'
+import Dashboard from './components/dashboard';
 
 const App = () => {
 
@@ -47,9 +49,10 @@ const App = () => {
                 
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/about">About</Nav.Link>
-                    <Nav.Link href="/products">Products</Nav.Link>
+                    <Nav.Link as={Link} to="/">Home</Nav.Link>
+                    <Nav.Link as={Link} to="/about">About</Nav.Link>
+                    <Nav.Link as={Link} to="/products">Products</Nav.Link>
+                    <Nav.Link as={Link} to="/blog">Blog</Nav.Link>
                     {/* {!! currentUser && <Nav.Link href="/editproducts">Edit art</Nav.Link>} */}
                   </Nav>
                   <Form inline>
@@ -64,8 +67,10 @@ const App = () => {
               <Route exact path='/products' component={ArtsContainer} />
               <Route path='/products/:artTitle' component={ArtShow} />
               <PrivateRoute exact path="/editproducts" component={EditArtsContainer}/>
+              <PrivateRoute exact path="/dashboard" component={Dashboard}/>
               <PrivateRoute exact path="/editabout" component={EditAbout}/>
               <PrivateRoute path='/update-profile' component={UpdateProfile} />
+              <Route exact path='/blog' component={BlogsContainer} />
               {/* <Route path="/signup" component={Signup} /> */}
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword}></Route>

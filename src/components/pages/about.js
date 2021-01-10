@@ -30,7 +30,7 @@ export const About = () => {
     if(loaded) {
         return (
             <React.Fragment>
-                <img src="images/about_3.jpg" alt="about Susie" style={{width: "100%", maxWidth: "600px", paddingBottom: "30px"}}>
+                <img src="https://firebasestorage.googleapis.com/v0/b/susie-wang-art.appspot.com/o/about%2Fabout.jpg?alt=media&token=70457c33-cc44-4ceb-abd9-90b616ac29cc" alt="about Susie" style={{width: "100%", maxWidth: "600px", paddingBottom: "30px"}}>
                     
                 </img>
                 {Parser(aboutText)}
