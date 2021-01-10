@@ -19,7 +19,7 @@ export const Intro = (props) => {
             <div className="introtext" >
                 <h1 style={{color:"white"}} >Unleash Your Imagination</h1>
                 <p>Susie Wang Art for your art collection</p>
-                <Button as={Link} to="about/" variant="outline-dark" style={{backgroundColor}} onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}>Learn more</Button>
+                <Button as={Link} to="blog/" variant="outline-dark" style={{backgroundColor}} onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}>Learn more</Button>
             </div>
         </div>
     )

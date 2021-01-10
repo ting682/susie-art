@@ -19,6 +19,7 @@ export const BlogInput = () => {
             content: blogContent,
             updatedAt: (new Date()).toString()
         })
+        
     }
 
     return (
