@@ -29,6 +29,7 @@ import { EditAbout } from './components/editAbout'
 import { BlogsContainer } from './components/blogsContainer';
 import { Link } from 'react-router-dom'
 import Dashboard from './components/dashboard';
+import SquarePay from './components/squarePay';
 
 const App = () => {
 
@@ -70,6 +71,7 @@ const App = () => {
               <PrivateRoute exact path="/dashboard" component={Dashboard}/>
               <PrivateRoute exact path="/editabout" component={EditAbout}/>
               <PrivateRoute path='/update-profile' component={UpdateProfile} />
+              <PrivateRoute exact path="/squarepay" component={SquarePay}/>
               <Route exact path='/blog' component={BlogsContainer} />
               {/* <Route path="/signup" component={Signup} /> */}
               <Route path="/login" component={Login} />
