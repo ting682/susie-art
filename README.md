@@ -9,4 +9,4 @@ This web application was made with React/Redux on the front end using Google Clo
 * Stores application state via Redux.
 * Provides nested routes via React-Router allowing show page
 
-![Susie Wang Art](https://tinginternetpostings.s3.amazonaws.com/susie_wang_art_github.PNG)
+![Susie Wang Art](https://firebasestorage.googleapis.com/v0/b/susie-wang-art.appspot.com/o/images%2Fsusie_wang_art_github.PNG?alt=media&token=3501e620-c88c-4770-a0b7-1bc9583ace07)
