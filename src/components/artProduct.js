@@ -1,14 +1,30 @@
 // import { Carousel, CarouselItem } from 'bootstrap'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 // import PaypalButton from './paypal/paypalButton'
-// import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import { useAuth } from '../contexts/authContext'
+import { postCart } from '../actions/postCart'
+import { v4 as uuidv4 } from 'uuid'
+// import { fetchCart } from '../actions/fetchCart'
 
 export const ArtProduct = (props) => {
 
     const loaded = useSelector(state => state.arts.loaded)
+
+    const { currentUser } = useAuth()
+
+    const dispatch = useDispatch()
+
+    if (currentUser) {
+        dispatch({type: 'SET_USER', payload: {uid: currentUser.uid}})
+    } else {
+        const guestUserId = uuidv4()
+        dispatch({type: 'SET_USER', payload: {uid: guestUserId}})
+    }
+
+    const currentUserId = useSelector(state => state.user.uid)
 
     // const [showPaypal, setShowPaypal] = useState(false)
 
@@ -45,6 +61,12 @@ export const ArtProduct = (props) => {
     //     return <PaypalButton image={props.images[0].url} imageAlt={props.images[0].alt} product={props.title} paypalPrice={props.paypalPrice}/>
     // }
 
+    const addToCart = () => {
+           
+        dispatch(postCart(currentUserId, {title: props.title, description: props.description, qty: 1}))
+        
+    }
+
     if (loaded) {
        // debugger
         return (
@@ -63,7 +85,8 @@ export const ArtProduct = (props) => {
                 </Link>
                 <p>{props.description}</p>
                 <p>{props.price}</p>
-
+                
+                <Button onClick={addToCart}>Add to cart</Button>
                 {/* <Button onClick={handlePay}>Pay via Paypal</Button> */}
             </React.Fragment>
         )

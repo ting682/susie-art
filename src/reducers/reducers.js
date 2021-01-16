@@ -5,6 +5,7 @@ import { artReducer } from "./artReducer";
 import { aboutReducer } from "./aboutReducer";
 import { blogsReducer } from './blogsReducer'
 import { blogReducer } from "./blogReducer";
+import { userReducer } from "./userReducer";
 
 export const rootReducer = (history) => combineReducers({
     router: connectRouter(history),
@@ -12,5 +13,6 @@ export const rootReducer = (history) => combineReducers({
     art: artReducer,
     about: aboutReducer,
     blogs: blogsReducer,
-    blog: blogReducer
+    blog: blogReducer,
+    user: userReducer
 })
