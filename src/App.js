@@ -30,6 +30,8 @@ import { BlogsContainer } from './components/blogsContainer';
 import { Link } from 'react-router-dom'
 import Dashboard from './components/dashboard';
 import SquarePay from './components/squarePay';
+import { ShoppingCart } from './components/shoppingCart';
+import { Checkout } from './components/checkout';
 
 const App = () => {
 
@@ -45,7 +47,7 @@ const App = () => {
                   <a href="https://twitter.com/SusieWangCFA"><FontAwesomeIcon icon={faTwitter} /> </a>
                   <a href="https://www.instagram.com/susie_wang26/"><FontAwesomeIcon icon={faInstagram} /> </a>
                 </Navbar.Brand>
-                <FontAwesomeIcon icon={faShoppingCart} />
+                <Link to='/shoppingcart'><FontAwesomeIcon icon={faShoppingCart} /></Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -73,6 +75,8 @@ const App = () => {
               <PrivateRoute path='/update-profile' component={UpdateProfile} />
               <PrivateRoute exact path="/squarepay" component={SquarePay}/>
               <Route exact path='/blog' component={BlogsContainer} />
+              <Route exact path='/shoppingcart' component={ShoppingCart} />
+              <Route exact path='/checkout' component={Checkout} />
               {/* <Route path="/signup" component={Signup} /> */}
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword}></Route>

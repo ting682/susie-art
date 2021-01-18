@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/authContext'
-import { postCart } from '../actions/postCart'
+// import { postCart } from '../actions/postCart'
 import { v4 as uuidv4 } from 'uuid'
 // import { fetchCart } from '../actions/fetchCart'
 
@@ -25,6 +25,8 @@ export const ArtProduct = (props) => {
     }
 
     const currentUserId = useSelector(state => state.user.uid)
+
+    
 
     // const [showPaypal, setShowPaypal] = useState(false)
 
@@ -62,8 +64,9 @@ export const ArtProduct = (props) => {
     // }
 
     const addToCart = () => {
-           
-        dispatch(postCart(currentUserId, {title: props.title, description: props.description, qty: 1}))
+        
+        dispatch({type: 'ADD_ITEM_TO_CART', payload: {title: props.title, description: props.description, qty: 1, price: props.paypalPrice, imageUrl: props.images[0]}})
+        // dispatch(postCart(currentUserId, {title: props.title, description: props.description, qty: 1}))
         
     }
 
