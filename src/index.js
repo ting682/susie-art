@@ -14,8 +14,8 @@ import { ConnectedRouter } from 'connected-react-router'
 
 export const history = createBrowserHistory()
 
-// const store = createStore(rootReducer(history), compose(applyMiddleware(thunk, routerMiddleware(history)), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
-const store = createStore(rootReducer(history), compose(applyMiddleware(thunk, routerMiddleware(history))))
+const store = createStore(rootReducer(history), compose(applyMiddleware(thunk, routerMiddleware(history)), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+// const store = createStore(rootReducer(history), compose(applyMiddleware(thunk, routerMiddleware(history))))
 
 ReactDOM.render(
   <React.StrictMode>

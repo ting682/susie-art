@@ -1,7 +1,7 @@
 import { Form, Table, Col, Row, Button } from 'react-bootstrap'
 import { useRef, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import PaymentPage from './PaymentPage'
+// import PaymentPage from './PaymentPage'
 
 export const Checkout = (props) => {
 
@@ -19,7 +19,15 @@ export const Checkout = (props) => {
     const billingPhoneRef = useRef()
     const emailRef = useRef()
 
-    const cart = useSelector(state => state.cart.cart)
+    const jwtCart = useSelector(state => state.cart.jwtCart)
+
+    // let cart = []
+
+    // for(const [key, value] of Object.entries(jwtCart)) {
+        
+    //     cart.push(value["item"])
+    // }
+    debugger
     const [sameShippingBilling, setSameShippingBilling] = useState(false)
 
 
@@ -84,7 +92,7 @@ export const Checkout = (props) => {
                 </tr>
             </Table>
 
-            <PaymentPage />
+            
 
             <Form>
                 <Form.Group as={Row}>
@@ -178,7 +186,22 @@ export const Checkout = (props) => {
                 
                 
                 
-                
+                {/* <PaymentPage 
+                    email={emailRef.current.value}
+                    billingName={billingNameRef.current.value} 
+                    billingAddress1={billingAddress1Ref.current.value}
+                    billingAddress2={billingAddress2Ref.current.value}
+                    billingState={billingStateRef.current.value}
+                    billingZip={billingZipRef.current.value}
+                    billingPhone={billingPhoneRef.current.value}
+                    shippingName={shippingNameRef.current.value}
+                    shippingAddress1={shippingAddress1Ref.current.value}
+                    shippingAddress2={shippingAddress2Ref.current.value}
+                    shippingState={shippingStateRef.current.value}
+                    shippingZip={shippingZipRef.current.value}
+                    shippingPhone={shippingPhoneRef.current.value}
+                    
+                /> */}
 
                 <Button>Place order</Button>
             </Form>

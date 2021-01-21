@@ -1,12 +1,14 @@
-export function postCart(userId, lineItems) {
+export function patchCart(userId, lineItems) {
     return (dispatch) => {
         dispatch({type: 'START_PATCH_CART'})
         // debugger
-        return fetch(`https://us-central1-susie-wang-art.cloudfunctions.net/cart`, {
+        const token = localStorage.getItem('susieartJWT')
+        return fetch(`http://127.0.0.1:5002/susie-wang-art/us-central1/carts`, {
             credentials: "include",
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
             },
 
             body: JSON.stringify({

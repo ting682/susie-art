@@ -1,13 +1,39 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Table, Button } from 'react-bootstrap'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { fetchCart } from '../actions/fetchCart'
+import { v4 as uuidv4 } from 'uuid'
 
 export const ShoppingCart = (props) => {
 
-    const cart = useSelector(state => state.cart.cart)
+    const currentUserId = useSelector(state => state.user.user)
 
+    const dispatch = useDispatch()
 
+    if (currentUserId.length === 0) {
+        
+        if (localStorage.getItem('susieartuid') === null) {
+            const guestUserId = uuidv4()
+            localStorage.setItem('susieartuid', guestUserId)
+            dispatch({type: 'SET_USER', payload: {uid: guestUserId}})
+        } else {
+            dispatch({type: 'SET_USER', payload: {uid: localStorage.getItem('susieartuid')}})
+            dispatch(fetchCart(localStorage.getItem('susieartuid')))
+        }
+  
+    }
+
+    const jwtCart = useSelector(state => state.cart.jwtCart)
+
+    let cart = []
+
+    for(const [key, value] of Object.entries(jwtCart)) {
+        if (value["item"]) {
+            cart.push(value["item"])
+        }
+        
+    }
 
     return (
         <React.Fragment>
@@ -24,7 +50,7 @@ export const ShoppingCart = (props) => {
                 </thead>
                 <tbody>
                 {cart.map(item => {
-                // debugger
+                
                 return (
                     <tr>
                         <td>

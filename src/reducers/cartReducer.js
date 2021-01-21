@@ -1,4 +1,4 @@
-export function cartReducer(state = { cart: [], requesting: false, loaded: false}, action) {
+export function cartReducer(state = { cart: [], jwtCart: [], requesting: false, loaded: false}, action) {
 
     let item;
     let cart;
@@ -8,6 +8,7 @@ export function cartReducer(state = { cart: [], requesting: false, loaded: false
         case "START_REQUESTING_CART":
             return {
                 cart: [],
+                jwtCart: [],
                 requesting: true,
                 loaded: false
             }
@@ -21,6 +22,7 @@ export function cartReducer(state = { cart: [], requesting: false, loaded: false
             cart.push(item)
 
             return {
+                ...state,
                 cart: cart,
                 requesting: false,
                 loaded: true
@@ -28,11 +30,20 @@ export function cartReducer(state = { cart: [], requesting: false, loaded: false
         
         case "GET_CART":
             return {
+                ...state,
                 cart: action.payload.lineItems,
                 requesting: false,
                 loaded: true
             }
 
+        case 'GET_JWT_CART':
+            // debugger
+            return {
+                ...state,
+                jwtCart: action.payload,
+                requesting: false,
+                loaded: true
+            }
         default:
             return state
     }

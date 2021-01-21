@@ -4,29 +4,29 @@ import { useDispatch, useSelector } from 'react-redux'
 // import PaypalButton from './paypal/paypalButton'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../contexts/authContext'
-// import { postCart } from '../actions/postCart'
-import { v4 as uuidv4 } from 'uuid'
-// import { fetchCart } from '../actions/fetchCart'
+// import { useAuth } from '../contexts/authContext'
+import { postCart } from '../actions/postCart'
+
+import { fetchCart } from '../actions/fetchCart'
 
 export const ArtProduct = (props) => {
 
     const loaded = useSelector(state => state.arts.loaded)
 
-    const { currentUser } = useAuth()
+    // const { currentUser } = useAuth()
 
     const dispatch = useDispatch()
 
-    if (currentUser) {
-        dispatch({type: 'SET_USER', payload: {uid: currentUser.uid}})
-    } else {
-        const guestUserId = uuidv4()
-        dispatch({type: 'SET_USER', payload: {uid: guestUserId}})
-    }
+    // if (currentUser) {
+    //     dispatch({type: 'SET_USER', payload: {uid: currentUser.uid}})
+    // } else {
+    //     // const guestUserId = uuidv4()
+    //     // dispatch({type: 'SET_USER', payload: {uid: guestUserId}})
+    // }
 
-    const currentUserId = useSelector(state => state.user.uid)
-
+    const currentUserId = useSelector(state => state.user.user)
     
+    // debugger
 
     // const [showPaypal, setShowPaypal] = useState(false)
 
@@ -38,7 +38,7 @@ export const ArtProduct = (props) => {
             return <img key={index}
                         className="w-100" style={{maxWidth: "600px"}}
                         // src={"http://localhost:3002/" + image.url}
-                        src={"https://susie-wang-art.web.app/" + image.url}
+                        src={image.url}
                         alt={image.alt}
                     />
 
@@ -65,9 +65,9 @@ export const ArtProduct = (props) => {
 
     const addToCart = () => {
         
-        dispatch({type: 'ADD_ITEM_TO_CART', payload: {title: props.title, description: props.description, qty: 1, price: props.paypalPrice, imageUrl: props.images[0]}})
-        // dispatch(postCart(currentUserId, {title: props.title, description: props.description, qty: 1}))
-        
+        // dispatch({type: 'ADD_ITEM_TO_CART', payload: {title: props.title, description: props.description, qty: 1, price: props.paypalPrice, imageUrl: props.images[0]}})
+        dispatch(postCart(currentUserId, {title: props.title, description: props.description, qty: 1, price: props.paypalPrice, imageUrl: props.images[0]}))
+        dispatch(fetchCart(currentUserId))
     }
 
     if (loaded) {
@@ -90,6 +90,7 @@ export const ArtProduct = (props) => {
                 <p>{props.price}</p>
                 
                 <Button onClick={addToCart}>Add to cart</Button>
+                <br></br>
                 {/* <Button onClick={handlePay}>Pay via Paypal</Button> */}
             </React.Fragment>
         )

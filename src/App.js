@@ -31,9 +31,15 @@ import { Link } from 'react-router-dom'
 import Dashboard from './components/dashboard';
 import SquarePay from './components/squarePay';
 import { ShoppingCart } from './components/shoppingCart';
-import { Checkout } from './components/checkout';
+// import { Checkout } from './components/checkout';
+import PaymentPage from './components/PaymentPage';
+// import { useAuth } from './contexts/authContext'
+// import { v4 as uuidv4 } from 'uuid'
+// import { useDispatch } from 'react-redux'
 
 const App = () => {
+  
+  
 
   return (
     <div className="App" style={{fontFamily: "'Times New Roman', serif"}}>
@@ -76,7 +82,7 @@ const App = () => {
               <PrivateRoute exact path="/squarepay" component={SquarePay}/>
               <Route exact path='/blog' component={BlogsContainer} />
               <Route exact path='/shoppingcart' component={ShoppingCart} />
-              <Route exact path='/checkout' component={Checkout} />
+              <Route exact path='/checkout' component={PaymentPage} />
               {/* <Route path="/signup" component={Signup} /> */}
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword}></Route>

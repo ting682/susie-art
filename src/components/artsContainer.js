@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom'
 import { EditArt } from './editArt'
 import { EditArtImages } from "./editArtImages"
 import { useAuth } from '../contexts/authContext'
+import { v4 as uuidv4 } from 'uuid'
+import { fetchCart } from '../actions/fetchCart'
+import { AddArt } from './addArt'
 
 export const ArtsContainer = (props) => {
 
@@ -22,6 +25,25 @@ export const ArtsContainer = (props) => {
     // const [limit, setLimit] = useState(2)
     
     const { currentUser } = useAuth()
+    
+    const currentUserId = useSelector(state => state.user.user)
+    
+    if (currentUserId.length === 0) {
+        
+        if (localStorage.getItem('susieartuid') === null) {
+            const guestUserId = uuidv4()
+            localStorage.setItem('susieartuid', guestUserId)
+            dispatch({type: 'SET_USER', payload: {uid: guestUserId}})
+        } else {
+            dispatch({type: 'SET_USER', payload: {uid: localStorage.getItem('susieartuid')}})
+            dispatch(fetchCart(localStorage.getItem('susieartuid')))
+        }
+        
+
+        
+    } else {
+        
+    }
     
 
     useEffect(() => {
@@ -39,6 +61,7 @@ export const ArtsContainer = (props) => {
             
         }
         getData()
+        
     },[dispatch])
 
     // const mapArts = () => {
@@ -56,6 +79,8 @@ export const ArtsContainer = (props) => {
                         
                         <Breadcrumb.Item active>Products</Breadcrumb.Item>
                 </Breadcrumb>
+
+                {!!currentUser && <AddArt />}
                 {Object.entries(arts).sort((a, b) => {
                     //debugger
                     return a[1].id - b[1].id
