@@ -44,6 +44,16 @@ export function cartReducer(state = { cart: [], jwtCart: [], requesting: false, 
                 requesting: false,
                 loaded: true
             }
+
+        case 'UPDATE_CART':
+            
+
+            return {
+                ...state,
+                jwtCart: action.payload.data,
+                requesting: false,
+                loaded: true
+            }
         default:
             return state
     }

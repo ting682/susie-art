@@ -27,7 +27,7 @@ export const Checkout = (props) => {
         
     //     cart.push(value["item"])
     // }
-    debugger
+    // debugger
     const [sameShippingBilling, setSameShippingBilling] = useState(false)
 
 

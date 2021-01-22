@@ -3,9 +3,10 @@ export function fetchCart(userId) {
         dispatch({type: 'START_GET_CART'})
         // debugger
         const token = localStorage.getItem('susieartJWT')
-        return fetch(`http://127.0.0.1:5002/susie-wang-art/us-central1/carts`, {
+        return fetch(`https://us-central1-susie-wang-art.cloudfunctions.net/carts`, {
+        // return fetch(`http://127.0.0.1:5002/susie-wang-art/us-central1/carts`, {
             
-            
+            credentials: "include",
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

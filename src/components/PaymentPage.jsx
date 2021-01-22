@@ -21,15 +21,19 @@ const LOCATION_ID = process.env.REACT_APP_SQUAREPAY_LOCATION_ID;
 
 export const PaymentPage = () => {
 
-  const shippingNameRef = useRef()
+  const shippingFirstNameRef = useRef()
+  const shippingLastNameRef = useRef()
   const shippingAddress1Ref = useRef()
   const shippingAddress2Ref = useRef()
+  const shippingCityRef = useRef()
   const shippingStateRef = useRef()
   const shippingZipRef = useRef()
   const shippingPhoneRef = useRef()
-  const billingNameRef = useRef()
+  const billingFirstNameRef = useRef()
+  const billingLastNameRef = useRef()
   const billingAddress1Ref = useRef()
   const billingAddress2Ref = useRef()
+  const billingCityRef = useRef()
   const billingStateRef = useRef()
   const billingZipRef = useRef()
   const billingPhoneRef = useRef()
@@ -46,6 +50,8 @@ export const PaymentPage = () => {
       
   }
 
+  const currentUserId = useSelector(state => state.user.user)
+
   const [sameShippingBilling, setSameShippingBilling] = useState(false)
 
 
@@ -56,9 +62,11 @@ export const PaymentPage = () => {
     useEffect(() => {
         // debugger
         if (sameShippingBilling) {
-            shippingNameRef.current.value = billingNameRef.current.value
+            shippingFirstNameRef.current.value = billingFirstNameRef.current.value
+            shippingLastNameRef.current.value = billingLastNameRef.current.value
             shippingAddress1Ref.current.value = billingAddress1Ref.current.value
             shippingAddress2Ref.current.value = billingAddress2Ref.current.value
+            shippingCityRef.current.value = billingCityRef.current.value
             shippingStateRef.current.value = billingStateRef.current.value
             shippingZipRef.current.value = billingZipRef.current.value
             shippingPhoneRef.current.value = billingPhoneRef.current.value
@@ -90,6 +98,7 @@ export const PaymentPage = () => {
        return;
   }
   //TODO: Replace alert with code in step 2.1
+  // return fetch(`http://127.0.0.1:5002/susie-wang-art/us-central1/payments/`, {
   return fetch('https://us-central1-susie-wang-art.cloudfunctions.net/payments/', {
     // fetch('https://connect.squareupsandbox.com/v2/payments', {
     method: 'POST',
@@ -106,7 +115,30 @@ export const PaymentPage = () => {
         idempotency_key: idempotency_key,
         location_id: LOCATION_ID,
         nonce: nonce,
-        amount: 10000
+        amount: cart.reduce((acc, item) => {
+          return acc + parseInt(item.price)
+      }, 0) * 100,
+        uid: localStorage.getItem('susieartJWT'),
+        emailAddress: emailRef.current.value,
+        billing: {
+          firstName: billingFirstNameRef.current.value,
+          lastName: billingLastNameRef.current.value,
+          address1: billingAddress1Ref.current.value,
+          address2: billingAddress2Ref.current.value,
+          city: billingCityRef.current.value,
+          zip: billingZipRef.current.value,
+          phone: billingPhoneRef.current.value
+        },
+        shipping: {
+          firstName: shippingFirstNameRef.current.value,
+          lastName: shippingLastNameRef.current.value,
+          address1: shippingAddress1Ref.current.value,
+          address2: shippingAddress2Ref.current.value,
+          city: shippingCityRef.current.value,
+          zip: shippingZipRef.current.value,
+          phone: shippingPhoneRef.current.value
+        }
+        
     })   
     })
     .catch(err => {
@@ -153,25 +185,28 @@ export const PaymentPage = () => {
   }
 
   function createVerificationDetails() {
+    let charge = cart.reduce((acc, item) => {
+      return acc + parseInt(item.price)
+    }, 0).toString()
     return {
-      amount: '100.00',
+      amount: charge,
       currencyCode: 'USD',
       intent: 'CHARGE',
       billingContact: {
-        familyName: 'Smith',
-        givenName: 'John',
-        email: 'jsmith@example.com',
-        country: 'GB',
-        city: 'London',
-        addressLines: ["1235 Emperor's Gate"],
-        postalCode: 'SW7 4JA',
-        phone: '020 7946 0532',
+        familyName: billingLastNameRef.current.value,
+        givenName: billingFirstNameRef.current.value,
+        email: emailRef.current.value,
+        country: 'US',
+        city: billingCityRef.current.value,
+        addressLines: [billingAddress1Ref.current.value, billingAddress2Ref.current.value],
+        postalCode: billingZipRef.current.value,
+        phone: billingPhoneRef.current.value,
       },
     };
   }
 
   function postalCode() {
-    const postalCode = '12345'; // your logic here
+    const postalCode = billingZipRef.current.value; // your logic here
     return postalCode;
   }
 
@@ -251,9 +286,15 @@ export const PaymentPage = () => {
                 
                 <Form.Group as={Row}>
                     
-                    <Form.Label column sm="2">Name</Form.Label>
+                    <Form.Label column sm="2">First name</Form.Label>
                     <Col sm="10">
-                    <Form.Control type="text" ref={billingNameRef}></Form.Control>
+                    <Form.Control type="text" ref={billingFirstNameRef}></Form.Control>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>  
+                    <Form.Label column sm="2">Last name</Form.Label>
+                    <Col sm="10">
+                    <Form.Control type="text" ref={billingLastNameRef}></Form.Control>
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
@@ -266,6 +307,12 @@ export const PaymentPage = () => {
                     <Form.Label column sm="2">Address 2</Form.Label>
                     <Col sm="10">
                         <Form.Control type="text" ref={billingAddress2Ref}></Form.Control>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm="2">City</Form.Label>
+                    <Col sm="10">
+                        <Form.Control type="text" ref={billingCityRef}></Form.Control>
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
@@ -291,9 +338,15 @@ export const PaymentPage = () => {
                 <Form.Check type="checkbox" value={sameShippingBilling} onChange={handleShippingBillingCheckbox} label="Same as billing" defaultChecked={false}></Form.Check>
                 <Form.Group as={Row}>
                     
-                    <Form.Label column sm="2">Name</Form.Label>
+                    <Form.Label column sm="2">First name</Form.Label>
                     <Col sm="10">
-                    <Form.Control type="text" ref={shippingNameRef}></Form.Control>
+                    <Form.Control type="text" ref={shippingFirstNameRef}></Form.Control>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>    
+                    <Form.Label column sm="2">Last name</Form.Label>
+                    <Col sm="10">
+                    <Form.Control type="text" ref={shippingLastNameRef}></Form.Control>
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
@@ -306,6 +359,12 @@ export const PaymentPage = () => {
                     <Form.Label column sm="2">Address 2</Form.Label>
                     <Col sm="10">
                         <Form.Control type="text" ref={shippingAddress2Ref}></Form.Control>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm="2">City</Form.Label>
+                    <Col sm="10">
+                        <Form.Control type="text" ref={shippingCityRef}></Form.Control>
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
