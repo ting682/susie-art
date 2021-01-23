@@ -137,8 +137,8 @@ export const PaymentPage = () => {
           city: shippingCityRef.current.value,
           zip: shippingZipRef.current.value,
           phone: shippingPhoneRef.current.value
-        }
-        
+        },
+        buyerVerificationToken: buyerVerificationToken
     })   
     })
     .catch(err => {
@@ -422,7 +422,7 @@ export const PaymentPage = () => {
         </div>
       </fieldset>
 
-      <CreditCardSubmitButton>Pay $1.00</CreditCardSubmitButton>
+      <CreditCardSubmitButton>Place order</CreditCardSubmitButton>
 
       <div className="sq-error-message">
         {errorMessages.map(errorMessage => (
