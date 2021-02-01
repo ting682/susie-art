@@ -120,6 +120,7 @@ export const PaymentPage = () => {
       }, 0) * 100,
         uid: localStorage.getItem('susieartJWT'),
         emailAddress: emailRef.current.value,
+        orderLocaleDate: (new Date()).toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' }) + " " + (new Date()).toLocaleTimeString('en-US') + " " + (new Date()).toString().match(/([A-Z]+[\+-][0-9]+.*)/)[1],
         billing: {
           firstName: billingFirstNameRef.current.value,
           lastName: billingLastNameRef.current.value,
@@ -157,7 +158,7 @@ export const PaymentPage = () => {
     })
     .then(data => {
     console.log(data);
-    alert('Payment complete successfully!\nCheck browser developer console for more details');
+    alert('Payment complete successfully!');
     })
     .catch(err => {
     console.log(err);
