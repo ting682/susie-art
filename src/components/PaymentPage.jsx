@@ -126,6 +126,7 @@ export const PaymentPage = () => {
           address1: billingAddress1Ref.current.value,
           address2: billingAddress2Ref.current.value,
           city: billingCityRef.current.value,
+          state: billingStateRef.current.value,
           zip: billingZipRef.current.value,
           phone: billingPhoneRef.current.value
         },
@@ -135,6 +136,7 @@ export const PaymentPage = () => {
           address1: shippingAddress1Ref.current.value,
           address2: shippingAddress2Ref.current.value,
           city: shippingCityRef.current.value,
+          state: shippingStateRef.current.value,
           zip: shippingZipRef.current.value,
           phone: shippingPhoneRef.current.value
         },
