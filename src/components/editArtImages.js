@@ -21,8 +21,16 @@ export const EditArtImages = (props) => {
     const handleChange = async (event) => {
         const imageFile = event.target.files[0]
         // debugger
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
+          }
+
+        const compressedFile = await imageCompression(imageFile, options);
+
         const fileRef = firebase.storage().ref('images/' + props.slug).child(imageFile.name)
-        fileRef.put(imageFile).then(snap => {
+        fileRef.put(compressedFile).then(snap => {
             setShow(false)
         })
     }

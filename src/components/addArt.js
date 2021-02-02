@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import firebase from "firebase/app";
 import { Modal, Button, Form } from 'react-bootstrap'
 import FormFileInput from 'react-bootstrap/esm/FormFileInput';
+import imageCompression from 'browser-image-compression';
 
 export const AddArt = (props) => {
 
@@ -73,7 +74,16 @@ export const AddArt = (props) => {
         const imageFile = event.target.files[0]
         // debugger
         const fileRef = firebase.storage().ref('images/' + artRoute).child(imageFile.name)
-        await fileRef.put(imageFile).then(snap => {
+
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
+          }
+
+        const compressedFile = await imageCompression(imageFile, options);
+
+        await fileRef.put(compressedFile).then(snap => {
             
         })
 
