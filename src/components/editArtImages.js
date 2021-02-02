@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 // import { useDispatch } from 'react-redux'
 import firebase from "firebase/app";
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, ProgressBar } from 'react-bootstrap'
 import FormFileInput from 'react-bootstrap/esm/FormFileInput';
+import imageCompression from 'browser-image-compression';
+
 
 export const EditArtImages = (props) => {
 
     // const dispatch = useDispatch()
     const [show, setShow] = useState(false)
     // let fileList = []
+    const [uploadStatus, setUploadStatus] = useState('info')
+    const [uploadPercentage, setUploadPercentage] = useState(0)
 
     const handleClick = () => {
         setShow(true)
@@ -30,9 +34,22 @@ export const EditArtImages = (props) => {
         const compressedFile = await imageCompression(imageFile, options);
 
         const fileRef = firebase.storage().ref('images/' + props.slug).child(imageFile.name)
-        fileRef.put(compressedFile).then(snap => {
+        
+        let uploadTask = fileRef.put(compressedFile)
+
+        uploadTask.on('state_changed', (snapshot) => {
+            setUploadPercentage(parseFloat(((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(2)))
+
+
+        }, (error) => {
+            console.log(error)
+        },
+        () => {
+            setUploadStatus('success')
             setShow(false)
+
         })
+        
     }
 
     const handleSubmit = (event) => {
@@ -55,9 +72,10 @@ export const EditArtImages = (props) => {
                         {/* <Form.Label>Title</Form.Label>
                         <Form.Control></Form.Control> */}
                         
-                        <FormFileInput onChange={handleChange}></FormFileInput>
+                        <FormFileInput onChange={handleChange} multiple></FormFileInput>
                         {/* <Button type="submit">Upload art images</Button> */}
                     </Form>
+                    <ProgressBar variant={uploadStatus} animated now={uploadPercentage} label={`${uploadPercentage}%`} />
                 </Modal.Body>
             </Modal>
         </div>

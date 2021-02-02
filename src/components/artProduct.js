@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { postCart } from '../actions/postCart'
 
 import { fetchCart } from '../actions/fetchCart'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const ArtProduct = (props) => {
 
@@ -35,11 +36,12 @@ export const ArtProduct = (props) => {
         return [props.images[0]].map(function(image, index) {
             //debugger
 
-            return <img key={index}
+            return <LazyLoadImage key={index}
                         className="w-100" style={{maxWidth: "600px"}}
                         // src={"http://localhost:3002/" + image.url}
                         src={image.url}
                         alt={image.alt}
+                        effect="blur"
                     />
 
             // return <CarouselItem key={index}>

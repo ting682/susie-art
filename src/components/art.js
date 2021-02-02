@@ -8,6 +8,7 @@ import { Breadcrumb } from 'react-bootstrap'
 // import firebase from "firebase/app";
 
 import { Carousel } from 'react-responsive-carousel'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const Art = (props) => {
 
@@ -26,12 +27,12 @@ export const Art = (props) => {
                 
                 return (
                     <div key={index} style={{position: "relative"}}>
-                        <img key={index}
+                        <LazyLoadImage key={index}
                             className="w-100" style={{maxWidth: "600px"}}
                             // src={"http://localhost:3002/" + image.url}
                             src={image.url}
                             alt={image.alt}
-
+                            effect="blur"
                         />
                         
                     </div>
