@@ -72,7 +72,7 @@ export const EditArtImages = (props) => {
                         {/* <Form.Label>Title</Form.Label>
                         <Form.Control></Form.Control> */}
                         
-                        <FormFileInput onChange={handleChange} multiple></FormFileInput>
+                        <FormFileInput onChange={handleChange}></FormFileInput>
                         {/* <Button type="submit">Upload art images</Button> */}
                     </Form>
                     <ProgressBar variant={uploadStatus} animated now={uploadPercentage} label={`${uploadPercentage}%`} />

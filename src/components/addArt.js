@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from "firebase/app";
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, ProgressBar } from 'react-bootstrap'
 import FormFileInput from 'react-bootstrap/esm/FormFileInput';
 import imageCompression from 'browser-image-compression';
 
@@ -17,6 +17,8 @@ export const AddArt = (props) => {
     
     const [artImageUrl, setArtImageUrl] = useState('')
     const [artImageAlt, setArtImageAlt] = useState('')
+    const [uploadStatus, setUploadStatus] = useState('info')
+    const [uploadPercentage, setUploadPercentage] = useState(0)
     const dispatch = useDispatch()
     const arts = useSelector(state => state.arts.arts)
     const artsLoaded = useSelector(state => state.arts.loaded)
@@ -83,8 +85,19 @@ export const AddArt = (props) => {
 
         const compressedFile = await imageCompression(imageFile, options);
 
-        await fileRef.put(compressedFile).then(snap => {
+        let uploadTask = fileRef.put(compressedFile)
+
+        uploadTask.on('state_changed', (snapshot) => {
+            setUploadPercentage(parseFloat(((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(2)))
+
+
+        }, (error) => {
+            console.log(error)
+        },
+        () => {
+            setUploadStatus('success')
             
+
         })
 
         await fileRef.getDownloadURL().then(function(url) {
@@ -152,6 +165,7 @@ export const AddArt = (props) => {
                         <br></br>
                         <Button type="submit">Add art</Button>
                     </Form>
+                    <ProgressBar variant={uploadStatus} animated now={uploadPercentage} label={`${uploadPercentage}%`} />
                 </Modal.Body>
             </Modal>
         </div>
